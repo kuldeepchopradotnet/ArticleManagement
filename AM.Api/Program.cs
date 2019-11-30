@@ -12,7 +12,6 @@ namespace AM.Api
 {
     public class Program
     {
-        //*** Entry Point
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
