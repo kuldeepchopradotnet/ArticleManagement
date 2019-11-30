@@ -18,6 +18,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AM.Data\AM.Data.csproj" />
+    <ProjectReference Include="..\AM.Identity\AM.Identity.csproj" />
+    <ProjectReference Include="..\AM.Reopsitory\AM.Reopsitory.csproj" />
+    <ProjectReference Include="..\AM.Service\AM.Service.csproj" />
   </ItemGroup>
 
 </Project>
