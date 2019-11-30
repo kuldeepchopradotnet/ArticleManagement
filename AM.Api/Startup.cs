@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AM.Api.Model;
+using AM.Reopsitory;
 #region Idenity Server 4 packages
 using IdentityServer4.AccessTokenValidation;
 using IdentityServer4.Services;
@@ -82,7 +83,7 @@ namespace AM.Api
             //    });
 
 
-
+            services.AddScoped<IArticleRepository, ArticleRepository>();
 
 
 

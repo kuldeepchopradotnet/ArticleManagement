@@ -1,4 +1,5 @@
 ﻿using System;
+using AM.Data.Model;
 #region identity and entity framework core packages , install from nuget
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -10,17 +11,21 @@ namespace AM.Api.Model
     //*** IdentityDbContext for asp.net core identiy 
     public partial class ArticleManagementContext : IdentityDbContext
     {
-        //*** Database to Code, POCO
-        //*** PM> Scaffold-DbContext "Server=Servername; Database=dbname; Integreated_Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
         public ArticleManagementContext(DbContextOptions<ArticleManagementContext> options)
-            : base(options)
+        : base(options)
         {
         }
+
+        //*** Database to Code, POCO
+        //*** PM> Scaffold-DbContext "Server=Servername; Database=dbname; Integreated_Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
 
         //*** Code to Database
         //*** Add-Migration "{MigarationName}"
         //*** Upddate-Database
 
+        public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<ArticleE> Article { get; set; }
 
         //public virtual DbSet<AspNetRoleClaims> AspNetRoleClaim { get; set; }
         //public virtual DbSet<AspNetRoles> AspNetRole { get; set; }
@@ -35,7 +40,16 @@ namespace AM.Api.Model
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+
             //modelBuilder.HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
+
+            //modelBuilder.Entity<Category>(enitity => {
+            //    enitity.HasIndex(e => e.Id);
+            //    enitity.Property(e => e.Icon).HasMaxLength(100);
+            //    enitity.Property(e => e.Id).ValueGeneratedNever();
+            //    enitity.Property(e => e.Name).HasMaxLength(100);
+            //});
 
             //modelBuilder.Entity<AspNetRoleClaims>(entity =>
             //{
