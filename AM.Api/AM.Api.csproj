@@ -16,4 +16,8 @@
     <PackageReference Include="StackifyMiddleware" Version="3.0.4.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AM.Data\AM.Data.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,17 +1,26 @@
 ﻿using System;
+#region identity and entity framework core packages , install from nuget
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+#endregion
 
 namespace AM.Api.Model
 {
+    //*** IdentityDbContext for asp.net core identiy 
     public partial class ArticleManagementContext : IdentityDbContext
     {
-
+        //*** Database to Code, POCO
+        //*** PM> Scaffold-DbContext "Server=Servername; Database=dbname; Integreated_Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
         public ArticleManagementContext(DbContextOptions<ArticleManagementContext> options)
             : base(options)
         {
         }
+
+        //*** Code to Database
+        //*** Add-Migration "{MigarationName}"
+        //*** Upddate-Database
+
 
         //public virtual DbSet<AspNetRoleClaims> AspNetRoleClaim { get; set; }
         //public virtual DbSet<AspNetRoles> AspNetRole { get; set; }

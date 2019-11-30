@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AM.Service", "AM.Service\AM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AM.Reopsitory", "AM.Reopsitory\AM.Reopsitory.csproj", "{D83AD64D-C5D1-4575-BCF7-C3970AE4DC0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AM.Identity", "AM.Identity\AM.Identity.csproj", "{A495B74A-D6B6-4944-A485-AE6DCC44EB48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D83AD64D-C5D1-4575-BCF7-C3970AE4DC0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D83AD64D-C5D1-4575-BCF7-C3970AE4DC0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D83AD64D-C5D1-4575-BCF7-C3970AE4DC0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A495B74A-D6B6-4944-A485-AE6DCC44EB48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A495B74A-D6B6-4944-A485-AE6DCC44EB48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A495B74A-D6B6-4944-A485-AE6DCC44EB48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A495B74A-D6B6-4944-A485-AE6DCC44EB48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
