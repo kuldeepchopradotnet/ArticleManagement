@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AM.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,10 +19,10 @@ namespace AM.Api.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<ApplicationUserRole> _roleManager;
 
-        public ValuesController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public ValuesController(UserManager<ApplicationUser> userManager, RoleManager<ApplicationUserRole> roleManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -95,13 +96,13 @@ namespace AM.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new IdentityUser { UserName = username, NormalizedUserName = username, Email = username };
+            var user = new ApplicationUser { UserName = username, NormalizedUserName = username, Email = username };
 
             var result = await _userManager.CreateAsync(user, password);
 
             string strRole = "Basic User";
 
-            IdentityRole role = new IdentityRole();
+            ApplicationUserRole role = new ApplicationUserRole();
             role.Name = strRole;
 
 

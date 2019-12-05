@@ -1,4 +1,5 @@
-﻿using IdentityModel;
+﻿using AM.Identity;
+using IdentityModel;
 using IdentityServer4;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
@@ -14,9 +15,9 @@ namespace AM.Api
 {
     public class ProfileService : IProfileService
     {
-        private readonly IUserClaimsPrincipalFactory<IdentityUser> _claimsFactory;
-        private readonly UserManager<IdentityUser> _userManager;
-        public ProfileService(UserManager<IdentityUser> userManager, IUserClaimsPrincipalFactory<IdentityUser> claimsFactory)
+        private readonly IUserClaimsPrincipalFactory<ApplicationUser> _claimsFactory;
+        private readonly UserManager<ApplicationUser> _userManager;
+        public ProfileService(UserManager<ApplicationUser> userManager, IUserClaimsPrincipalFactory<ApplicationUser> claimsFactory)
         {
             _userManager = userManager;
             _claimsFactory = claimsFactory;

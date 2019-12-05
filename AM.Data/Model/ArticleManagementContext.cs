@@ -1,5 +1,6 @@
 ﻿using System;
 using AM.Data.Model;
+using AM.Identity;
 #region identity and entity framework core packages , install from nuget
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 namespace AM.Api.Model
 {
     //*** IdentityDbContext for asp.net core identiy 
-    public partial class ArticleManagementContext : IdentityDbContext
+    public partial class ArticleManagementContext : IdentityDbContext<ApplicationUser, ApplicationUserRole, int>
     {
         public ArticleManagementContext(DbContextOptions<ArticleManagementContext> options)
         : base(options)
@@ -23,6 +24,11 @@ namespace AM.Api.Model
         //*** Code to Database
         //*** Add-Migration "{MigarationName}"
         //*** Upddate-Database
+
+        //*** There is already an object named 'AspNetRoles' in the database
+        //*** Add-Migration InitialMigrations -IgnoreChanges
+        //*** update-database -verbose
+
 
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<ArticleE> Article { get; set; }

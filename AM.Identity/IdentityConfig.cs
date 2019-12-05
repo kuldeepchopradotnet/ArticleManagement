@@ -46,8 +46,18 @@ namespace AM.Api
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.Address,
-                        "api1"
-                    }
+                        "api1",
+                        IdentityServerConstants.StandardScopes.OfflineAccess
+                    },
+                     AllowOfflineAccess = true,
+                    RefreshTokenUsage = TokenUsage.OneTimeOnly,
+                    //RefreshTokenExpiration = TokenExpiration.Sliding,
+                      RefreshTokenExpiration = TokenExpiration.Absolute,
+                    UpdateAccessTokenClaimsOnRefresh = true,
+                    AccessTokenLifetime = 10,
+                    //SlidingRefreshTokenLifetime = 20,
+                    AbsoluteRefreshTokenLifetime = 100
+
                 },
             new Client
              {

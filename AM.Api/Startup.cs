@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AM.Api.Model;
+using AM.Identity;
 using AM.Reopsitory;
 #region Idenity Server 4 packages
 using IdentityServer4.AccessTokenValidation;
@@ -42,7 +43,7 @@ namespace AM.Api
             services.AddDbContextPool<ArticleManagementContext>(o =>
                 o.UseSqlServer("Server=(localdb)\\MyInstance;Database=ArticleManagement;Trusted_Connection=True;MultipleActiveResultSets=True;"));
             // Configure Identity
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, ApplicationUserRole>()
               .AddEntityFrameworkStores<ArticleManagementContext>()
               .AddDefaultTokenProviders();
 
@@ -66,7 +67,7 @@ namespace AM.Api
                 .AddInMemoryApiResources(IdentityConfig.GetApiResources())
                 .AddInMemoryClients(IdentityConfig.GetClients())
                 //.AddTestUsers(IdentityConfig.GetUsers())
-                .AddAspNetIdentity<IdentityUser>()
+                .AddAspNetIdentity<ApplicationUser>()
                 ;
 
             // *** Authentication Handler optional
