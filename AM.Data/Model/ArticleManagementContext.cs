@@ -31,7 +31,7 @@ namespace AM.Api.Model
 
 
         public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<ArticleE> Article { get; set; }
+        public virtual DbSet<ArticleDto> Article { get; set; }
 
         //public virtual DbSet<AspNetRoleClaims> AspNetRoleClaim { get; set; }
         //public virtual DbSet<AspNetRoles> AspNetRole { get; set; }

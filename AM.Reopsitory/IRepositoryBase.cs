@@ -14,11 +14,10 @@ namespace AM.Reopsitory
         void Delete(T entity);
         Task SaveAsync();
 
-        int Count(T enity);
+        int Count(Expression<Func<T, bool>> expression = null);
 
-        Task<IEnumerable<T>> Filter(string sort, int skip, int take, string search,
-            Expression<Func<T, object>> orderbyExpression,
-            Expression<Func<T, bool>> expression
-            );
+        Task<IEnumerable<T>> Filter(string sort = "asc", int skip = 0, int take = 2147483647,
+                           Expression<Func<T, object>> orderbyExpression = null,
+                           Expression<Func<T, bool>> expression = null);
     }
 }

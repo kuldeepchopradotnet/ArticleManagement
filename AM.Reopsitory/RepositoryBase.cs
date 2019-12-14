@@ -42,15 +42,13 @@ namespace AM.Reopsitory
             this.AppDbContext.Set<T>().Remove(entity);
         }
 
-        public async Task<IEnumerable<T>> Filter(string sort, int skip, int take, string search,
-            Expression<Func<T, object>> orderbyExpression,
-            Expression<Func<T, bool>> expression
-            )
+        public async Task<IEnumerable<T>> Filter(string sort = "asc", int skip = 0, int take = 2147483647,
+                   Expression<Func<T, object>> orderbyExpression = null,
+                   Expression<Func<T, bool>> expression = null)
         {
             IEnumerable<T> result = new List<T>();
             IQueryable<T> res;
-
-            if (!string.IsNullOrEmpty(search))
+            if (expression != null)
             {
                 res = this.AppDbContext.Set<T>().Where(expression).AsQueryable();
             }
@@ -58,16 +56,21 @@ namespace AM.Reopsitory
             {
                 res = this.AppDbContext.Set<T>().AsQueryable();
             }
-
-
-            if (sort == "asc")
+            if (orderbyExpression == null)
             {
-
-                result = await res.OrderBy(orderbyExpression).Skip(skip).Take(take).ToListAsync();
+                result = await res.Skip(skip).Take(take).ToListAsync();
             }
             else
             {
-                result = await res.OrderByDescending(orderbyExpression).Skip(skip).Take(take).ToListAsync();
+                if (sort == "asc")
+                {
+
+                    result = await res.OrderBy(orderbyExpression).Skip(skip).Take(take).ToListAsync();
+                }
+                else
+                {
+                    result = await res.OrderByDescending(orderbyExpression).Skip(skip).Take(take).ToListAsync();
+                }
             }
             return result;
         }
@@ -77,9 +80,15 @@ namespace AM.Reopsitory
             await this.AppDbContext.SaveChangesAsync();
         }
 
-        public int Count(T enity)
+        public int Count(Expression<Func<T, bool>> expression = null)
         {
-            return this.AppDbContext.Set<T>().Count();
+            if (expression == null)
+            {
+                return this.AppDbContext.Set<T>().Count();
+            }
+            return this.AppDbContext.Set<T>().Where(expression).Count();
         }
+
+
     }
 }

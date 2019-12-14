@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AM.Reopsitory
 {
-    public interface IArticleRepository : IRepositoryBase<ArticleE>
+    public interface IArticleRepository : IRepositoryBase<ArticleDto>
     {
         
     }

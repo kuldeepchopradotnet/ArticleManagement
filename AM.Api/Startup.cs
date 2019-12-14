@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using AM.Api.Model;
 using AM.Identity;
 using AM.Reopsitory;
+using AM.Service;
+using AM.Service.AutoMapperService;
+using AutoMapper;
 #region Idenity Server 4 packages
 using IdentityServer4.AccessTokenValidation;
 using IdentityServer4.Services;
@@ -22,6 +25,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
+using NLog.Extensions.Logging;
+using NLog.Web;
 
 namespace AM.Api
 {
@@ -83,11 +88,11 @@ namespace AM.Api
             //        options.RequireHttpsMetadata = false;
             //    });
 
-
+            services.AddAutoMapper(typeof(AutoMapperProfile));
             services.AddScoped<IArticleRepository, ArticleRepository>();
-
-
-
+  
+            services.AddScoped<ILoggerService, LoggerService>();
+            services.AddScoped<IAutoMapperService, AutoMapperService>();
             // *** Authentication Handler optional Idenity
             //services.AddAuthentication(
             // IdentityServerAuthenticationDefaults.AuthenticationScheme)
@@ -136,7 +141,7 @@ namespace AM.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -151,6 +156,9 @@ namespace AM.Api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            env.ConfigureNLog("nlog.config");
+            loggerFactory.AddNLog();
+            app.AddNLogWeb();
 
             // *** Cors MW
 

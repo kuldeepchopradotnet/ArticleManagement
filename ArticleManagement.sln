@@ -7,13 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArticleManagement", "Articl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.Api", "AM.Api\AM.Api.csproj", "{1F31F1EA-198D-41B0-A784-E92C4EA29936}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AM.Data", "AM.Data\AM.Data.csproj", "{5B80B1E7-46DB-46D9-8B18-0D779B0C0CE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.Domain", "AM.Data\AM.Domain.csproj", "{5B80B1E7-46DB-46D9-8B18-0D779B0C0CE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AM.Service", "AM.Service\AM.Service.csproj", "{9E4D5738-020B-4E61-91E3-29C35A1CFF85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.Service", "AM.Service\AM.Service.csproj", "{9E4D5738-020B-4E61-91E3-29C35A1CFF85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AM.Reopsitory", "AM.Reopsitory\AM.Reopsitory.csproj", "{D83AD64D-C5D1-4575-BCF7-C3970AE4DC0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.Reopsitory", "AM.Reopsitory\AM.Reopsitory.csproj", "{D83AD64D-C5D1-4575-BCF7-C3970AE4DC0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AM.Identity", "AM.Identity\AM.Identity.csproj", "{A495B74A-D6B6-4944-A485-AE6DCC44EB48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.Identity", "AM.Identity\AM.Identity.csproj", "{A495B74A-D6B6-4944-A485-AE6DCC44EB48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

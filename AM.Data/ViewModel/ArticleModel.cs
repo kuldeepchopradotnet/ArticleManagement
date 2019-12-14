@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace AM.Data.Model
+namespace AM.Data
 {
-    public class ArticleDto
+    public class ArticleModel
     {
         public int Id { get; set; }
         public string Title { get; set; }

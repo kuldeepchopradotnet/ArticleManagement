@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AM.Reopsitory
 {
-    public class ArticleRepository : RepositoryBase<ArticleE>, IArticleRepository
+    public class ArticleRepository : RepositoryBase<ArticleDto>, IArticleRepository
     {
         public ArticleRepository(ArticleManagementContext repositoryContext) : base(repositoryContext)
         {

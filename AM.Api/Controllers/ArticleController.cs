@@ -1,9 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
+using AM.Api.Controllers.BaseController;
+using AM.Data;
 using AM.Data.Model;
+using AM.Domain.ViewModel;
 using AM.Reopsitory;
+using AM.Service;
+using AM.Service.AutoMapperService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,47 +17,65 @@ namespace AM.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ArticleController : ControllerBase
+    public class ArticleController : BaseControllers
     {
         private readonly IArticleRepository articleRepository;
+        protected readonly ILoggerService _logService;
+        protected readonly IAutoMapperService _mapperService;
 
-        public ArticleController(IArticleRepository articleRepository)
+        public ArticleController(IArticleRepository articleRepository, ILoggerService logService,
+            IAutoMapperService mapperService
+            ) : base(logService)
         {
             this.articleRepository = articleRepository;
+            _logService = logService;
+            _mapperService = mapperService;
         }
 
         // GET: api/Category
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ArticleE>>> GetArticle()
+        public async Task<ActionResult<IEnumerable<ArticleDto>>> GetArticle()
         {
-            IEnumerable<ArticleE> a = await articleRepository.FindAllAsync();
-            return a.ToList();
+            try
+            {
+                FilterModel filterModel = FilterFormData();
+                var data = await filter(filterModel);
+                var result = _mapperService.Map<IEnumerable<ArticleModel>, IEnumerable<ArticleDto>>(data);
+                return JsonResult(result, true);
+
+            }
+            catch (Exception ex)
+            {
+                return JsonResult(ex, false);
+            }
+
+
         }
 
         // GET: api/Category/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ArticleE>> GetArticle(int id)
+        public async Task<ActionResult<ArticleDto>> GetArticle(int id)
         {
-            var articleEs = await articleRepository.FindByConditionAsync(x=>x.Id == id);
+            var ArticleDtos = await articleRepository.FindByConditionAsync(x=>x.Id == id);
 
-            if (articleEs == null)
+            if (ArticleDtos == null)
             {
                 return NotFound();
             }
 
-            return articleEs.FirstOrDefault();
+            return ArticleDtos.FirstOrDefault();
         }
 
         // PUT: api/Category/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategory(int id, ArticleE articleE)
+        public async Task<IActionResult> PutCategory(int id, ArticleDto ArticleDto)
         {
-            if (id != articleE.Id)
+            if (id != ArticleDto.Id)
             {
                 return BadRequest();
             }
 
-            articleRepository.Update(articleE);
+            articleRepository.Update(ArticleDto);
             //_context.Entry(category).State = EntityState.Modified;
 
             //try
@@ -75,13 +99,13 @@ namespace AM.Api.Controllers
 
         // POST: api/Category
         [HttpPost]
-        public async Task<ActionResult<Category>> PostCategory(ArticleE articleE)
+        public async Task<ActionResult<Category>> PostCategory(ArticleDto articleDto)
         {
-            articleRepository.Create(articleE);
+            articleRepository.Create(articleDto);
             //_context.Category.Add(category);
             //await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetArticle", new { id = articleE.Id }, articleE);
+            return CreatedAtAction("GetArticle", new { id = articleDto.Id }, articleDto);
         }
 
         // DELETE: api/Category/5
@@ -104,6 +128,22 @@ namespace AM.Api.Controllers
         //{
         //    //return _context.Category.Any(e => e.Id == id);
         //}
+
+        private async Task<IEnumerable<ArticleDto>> filter(FilterModel filterModel)
+        {
+
+            Expression<Func<ArticleDto, bool>> expression = x => x.Id > 0;
+            if (!string.IsNullOrEmpty(filterModel.SearchValue))
+            {
+                expression = x => x.Article.Contains(filterModel.SearchValue)
+                || x.Title.Contains(filterModel.SearchValue);
+            }
+            var propName = CheckNDefaultPropName<ArticleDto>(filterModel.SortColumn);
+            return await articleRepository.Filter(filterModel.SortColumnAscDesc, filterModel.Start, filterModel.Length,
+               x => x.GetType().GetProperty(propName).GetValue(x, null),
+               expression);
+        }
+
 
     }
 }
