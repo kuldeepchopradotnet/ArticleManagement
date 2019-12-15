@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AM.Api.Model;
+using AM.Reopsitory;
+using AM.Service;
+using AM.Service.AutoMapperService;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Logging;
 
 namespace ArticleManagement
 {
@@ -24,6 +31,11 @@ namespace ArticleManagement
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            IdentityModelEventSource.ShowPII = true;
+            // Configure Databse 
+            services.AddDbContextPool<ArticleManagementContext>(o =>
+                o.UseSqlServer("Server=(localdb)\\MyInstance;Database=ArticleManagement;Trusted_Connection=True;MultipleActiveResultSets=True;"));
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -31,7 +43,11 @@ namespace ArticleManagement
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddAutoMapper(typeof(AutoMapperProfile));
+            services.AddScoped<IArticleRepository, ArticleRepository>();
 
+            services.AddScoped<ILoggerService, LoggerService>();
+            services.AddScoped<IAutoMapperService, AutoMapperService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -55,9 +71,16 @@ namespace ArticleManagement
 
             app.UseMvc(routes =>
             {
+
+                routes.MapRoute(
+                  name: "/",
+                  template: "/{query?}",
+                  defaults: new { controller = "Article", action = "Index" });
+
+
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Article}/{action=Index}/{query?}");
             });
         }
     }

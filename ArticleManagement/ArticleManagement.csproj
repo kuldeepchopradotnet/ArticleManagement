@@ -9,6 +9,15 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\AM.Data\AM.Domain.csproj" />
+    <ProjectReference Include="..\AM.Identity\AM.Identity.csproj" />
+    <ProjectReference Include="..\AM.Reopsitory\AM.Reopsitory.csproj" />
+    <ProjectReference Include="..\AM.Service\AM.Service.csproj" />
   </ItemGroup>
 
 </Project>

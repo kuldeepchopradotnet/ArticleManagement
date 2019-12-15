@@ -8,6 +8,7 @@ namespace AM.Domain.ViewModel
     {
         public int Draw { get; set; }
         public T Data { get; set; }
+        public int RecordsTotal { get; set; }
         public int RecordsFiltered { get; set; }
     }
 }
