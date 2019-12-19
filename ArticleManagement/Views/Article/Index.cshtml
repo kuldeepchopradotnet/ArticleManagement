@@ -22,213 +22,154 @@
 </style>
 @if (Model.Id > 0)
 {
-        <!-- Page Content -->
-        <div class="container">
-            <div class="row">
-                <!-- Post Content Column -->
-                <div class="col-lg-8">
-                    <!-- Title -->
-                    <h1 class="mt-4">@Model.Title</h1>
-                    <!-- Author -->
-                    <p class="lead">
-                        by
-                        <a href="#">Kuldeep Chopra</a>
-                    </p>
-                    <hr>
-                    <!-- Date/Time -->
-                    <p>Posted on @Model.CreatedOn.ToString("MM/DD/YYYY")</p>
-                    <hr>
-                    <!-- Preview Image -->
-                    <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
-                    <hr>
-                    <!-- Post Content -->
-                    <p class="lead">
-                        @Html.Raw(Model.Article)</p>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <!-- Post Content Column -->
+            <div class="col-lg-8">
+                <!-- Title -->
+                <h1 class="mt-4">@Model.Title</h1>
+                <!-- Author -->
+                <p class="lead">
+                    by
+                    <a href="#">Kuldeep Chopra</a>
+                </p>
+                <hr>
+                <!-- Date/Time -->
+                <p>Posted on @Model.CreatedOn.ToString("MM/DD/YYYY")</p>
+                <hr>
+                <!-- Preview Image -->
+                <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+                <hr>
+                <!-- Post Content -->
+                <p class="lead">
+                    @Html.Raw(Model.Article)
+                </p>
 
-                        <hr>
+                <hr>
 
+            </div>
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+                <!-- Search Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Search</h5>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary" type="button">Go!</button>
+                            </span>
+                        </div>
                     </div>
-                    <!-- Sidebar Widgets Column -->
-                    <div class="col-md-4">
-                        <!-- Search Widget -->
-                        <div class="card my-4">
-                            <h5 class="card-header">Search</h5>
-                            <div class="card-body">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search for...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-secondary" type="button">Go!</button>
-                                    </span>
-                                </div>
+                </div>
+                <!-- Categories Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Categories</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#">Web Design</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">HTML</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Freebies</a>
+                                    </li>
+                                </ul>
                             </div>
-                        </div>
-                        <!-- Categories Widget -->
-                        <div class="card my-4">
-                            <h5 class="card-header">Categories</h5>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <ul class="list-unstyled mb-0">
-                                            <li>
-                                                <a href="#">Web Design</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">HTML</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Freebies</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <ul class="list-unstyled mb-0">
-                                            <li>
-                                                <a href="#">JavaScript</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">CSS</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Tutorials</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Side Widget -->
-                        <div class="card my-4">
-                            <h5 class="card-header">Side Widget</h5>
-                            <div class="card-body">
-                                You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+                            <div class="col-lg-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#">JavaScript</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">CSS</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Tutorials</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- /.row -->
+                <!-- Side Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Side Widget</h5>
+                    <div class="card-body">
+                        You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+                    </div>
+                </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
-    else
-    {
+        </div>
+        <!-- /.row -->
+    </div>
+}
+else
+{
 
 
     <table class="article-table table" id="articleDT">
         <thead>
             <tr>
-
-                    @*<th>
-
-
-    </th>*@
-/**/
-                                <th>
-
-/**/
-                    @*@Html.DisplayNameFor(model => model.Title)*@
-/**/
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-/**/
-                    @*@foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
+                <th>
+                </th>
             </tr>
-    }*@
-/**/
-                                        </tbody>
-                                        </table>
+        </thead>
+        <tbody></tbody>
+    </table>
 
-                                        <script>
-                                            $(document).ready(function () {
+    <script>
+        $(document).ready(function () {
 
-                                                debugger;
-                                                $('#articleDT').DataTable({
-                                                    "processing": true,
-                                                    "serverSide": true,
-                                                    "columns": [
-                                                        //{ "name": "id" },
-                                                        { "name": "title" }
-                                                    ],
-                                                    columnDefs: [
-                                                        //{
-                                                        //    "targets": 0,
-                                                        //    "data": "id",
-                                                        //},
-                                                        //{
-                                                        //    // This works fine, but I want col1 to be the 'empty' col ...
-                                                        //    "targets": 1,
-                                                        //    "data": null,
-                                                        //    "defaultContent": 'def. content...',
-                                                        //},
+            debugger;
+            $('#articleDT').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "columns": [
+                    //{ "name": "id" },
+                    { "name": "title" }
+                ],
+                columnDefs: [
+                    //{
+                    //    "targets": 0,
+                    //    "data": "id",
+                    //},
+                    //{
+                    //    // This works fine, but I want col1 to be the 'empty' col ...
+                    //    "targets": 1,
+                    //    "data": null,
+                    //    "defaultContent": 'def. content...',
+                    //},
 
-                                                        //{
-                                                        //    "targets": 0,
-                                                        //    "data": "id"
-                                                        //},
-                                                        {
-                                                            "targets": 0,
-                                                            "data": "title",
-                                                            "className": "article-grid",
-                                                            "render": function (data, type, row, meta) {
+                    //{
+                    //    "targets": 0,
+                    //    "data": "id"
+                    //},
+                    {
+                        "targets": 0,
+                        "data": "title",
+                        "className": "article-grid",
+                        "render": function (data, type, row, meta) {
 
-                                                                return '<a href="/' + row.url + '"> ' + data + ' </a>';
-                                                            }
-                                                        }
-                                                    ],
-                                                    "ajax": {
-                                                        "url": "/Article/JDataTable",
-                                                        "type": "Post"
-                                                    }
-                                                });
+                            return '<a href="/' + row.url + '"> ' + data + ' </a>';
+                        }
+                    }
+                ],
+                "ajax": {
+                    "url": "/Article/JDataTable",
+                    "type": "Post"
+                }
+            });
 
 
-                                            });
+        });
 
-                                        </script>
+    </script>
 
 }
 
