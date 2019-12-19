@@ -34,8 +34,7 @@ namespace ArticleManagement
             IdentityModelEventSource.ShowPII = true;
             // Configure Databse 
             services.AddDbContextPool<ArticleManagementContext>(o =>
-                o.UseSqlServer("Server=(localdb)\\MyInstance;Database=ArticleManagement;Trusted_Connection=True;MultipleActiveResultSets=True;"));
-
+                o.UseSqlServer(Configuration.GetConnectionString("AppDb")));
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

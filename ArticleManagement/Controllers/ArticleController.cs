@@ -32,13 +32,6 @@ namespace ArticleManagement.Controllers
             _logService = logService;
             _mapperService = mapperService;
         }
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
-
-        //[HttpGet("{id}")]
-
         public IActionResult Index(string query)
         {
             ArticleModel article = new ArticleModel();
@@ -47,19 +40,6 @@ namespace ArticleManagement.Controllers
                 article = _mapperService.Map<ArticleModel, ArticleDto>(result);
             }
             return View(article);
-            //try
-            //{
-            //    FilterModel filterModel = FilterFormData();
-            //    var data =  filter(filterModel).Result;
-            //    var result = _mapperService.Map<IEnumerable<ArticleModel>, IEnumerable<ArticleDto>>(data);
-            //    return View(result);
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    //_logService.LogDebug(ex.Message);
-            //    return JsonResult(ex, false);
-            //}
         }
 
 
@@ -109,9 +89,27 @@ namespace ArticleManagement.Controllers
                expression);
         }
 
+        [HttpGet]
+        public IActionResult Publish()
+        {
+            return View(new ArticleModel());
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> Publish(ArticleModel articleModel)
+        {
+            if(ModelState.IsValid)
+            {
+                articleModel.CreatedBy = 1;
+                articleModel.Url = articleModel.Title;
+                articleModel.CreatedOn = DateTime.Now;
 
-
+                var article = _mapperService.Map<ArticleDto, ArticleModel>(articleModel);
+                articleRepository.Create(article);
+                await articleRepository.SaveAsync();
+            }
+            return View(new ArticleModel());
+        }
 
 
 

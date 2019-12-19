@@ -1,0 +1,58 @@
+﻿@model AM.Data.ArticleModel
+
+@{
+    ViewData["Title"] = "GetArticle";
+}
+
+<h1>GetArticle</h1>
+
+<h4>ArticleModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Publish">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" >
+                <label asp-for="Article" class="control-label"></label>
+                <textarea asp-for="Article" id="editor" class="form-control">
+                </textarea>
+                <span asp-validation-for="Article" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="~/ckeditor/samples/js/sample.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        initSample();
+        $("form").submit(function (event) {
+            debugger;
+            $("#Article").val(CKEDITOR.instances.editor.getData());
+
+        });
+
+    </script>
+
+}
