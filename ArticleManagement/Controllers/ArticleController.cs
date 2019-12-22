@@ -24,9 +24,10 @@ namespace ArticleManagement.Controllers
         protected readonly IAutoMapperService _mapperService;
 
         public ArticleController(
-            IArticleRepository articleRepository, ILoggerService logService,
-            IAutoMapperService mapperService
-            ):base(logService)
+            IArticleRepository articleRepository,
+            IAutoMapperService mapperService,
+             ILoggerService logService
+            ) :base(logService)
         {
             this.articleRepository = articleRepository;
             _logService = logService;

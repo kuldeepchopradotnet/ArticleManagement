@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.42.0.1778" />
     <PackageReference Include="NLog" Version="4.6.8" />
   </ItemGroup>
 

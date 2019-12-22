@@ -6,6 +6,7 @@ using AM.Api.Model;
 using AM.Reopsitory;
 using AM.Service;
 using AM.Service.AutoMapperService;
+using AM.Service.GoogleDriveService;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,6 +49,10 @@ namespace ArticleManagement
             services.AddScoped<ILoggerService, LoggerService>();
             services.AddScoped<IAutoMapperService, AutoMapperService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            
+            services.AddAuthDriveCredential();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

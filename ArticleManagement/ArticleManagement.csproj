@@ -7,6 +7,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.42.0.1778" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
@@ -18,6 +19,11 @@
     <ProjectReference Include="..\AM.Identity\AM.Identity.csproj" />
     <ProjectReference Include="..\AM.Reopsitory\AM.Reopsitory.csproj" />
     <ProjectReference Include="..\AM.Service\AM.Service.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="token.json\" />
   </ItemGroup>
 
 </Project>
