@@ -50,7 +50,7 @@ namespace ArticleManagement
             services.AddScoped<IAutoMapperService, AutoMapperService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             
-            services.AddAuthDriveCredential();
+            //services.AddAuthDriveCredential();
 
 
         }
